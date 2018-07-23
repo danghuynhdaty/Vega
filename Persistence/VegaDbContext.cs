@@ -1,13 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using Vega.Models;
 
 namespace Vega.Persistence
 {
     public class VegaDbContext : DbContext
     {
-        protected VegaDbContext(DbContextOptions<VegaDbContext> options)
-            :base(options)
+        public VegaDbContext(DbContextOptions<VegaDbContext> options)
+            : base(options)
         {
-            
+
         }
+
+        public DbSet<Make> Makes { get; set; }
+        public DbSet<Model> Models { get; set; }
     }
 }
