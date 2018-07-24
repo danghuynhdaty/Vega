@@ -11,7 +11,7 @@ export class FeatureService {
 
   // tslint:disable-next-line:typedef
   getFeature() {
-    return this.http.get("/api/feature/")
+    return this.http.get("/api/feature/getall")
                     .map((res: Response) => res.json());
   }
 }
