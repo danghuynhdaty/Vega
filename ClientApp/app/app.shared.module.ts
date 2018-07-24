@@ -1,7 +1,9 @@
-import { MakeService } from "./services/make.service";
-import { VehicleFormComponent } from "./components/vehicle-form/vehicle-form.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+
+import { MakeService } from "./services/make.service";
+import { VehicleFormComponent } from "./components/vehicle-form/vehicle-form.component";
+
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
@@ -9,6 +11,8 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./components/app/app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ModelService } from "./services/model.service";
+import { FeatureService } from "./services/feature.service";
 
 @NgModule({
     declarations: [
@@ -29,7 +33,9 @@ import { HomeComponent } from "./components/home/home.component";
         ])
     ],
     providers: [
-        MakeService
+        MakeService,
+        ModelService,
+        FeatureService
     ]
 })
 export class AppModuleShared {

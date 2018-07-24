@@ -4,14 +4,14 @@ import "rxjs/add/operator/map";
 import { Response } from "@angular/http";
 
 @Injectable()
-export class MakeService {
+export class ModelService {
 
   constructor(private http: Http) { }
 
   // tslint:disable-next-line:typedef
-  getMakes() {
-    return this.http.get("/api/make/getall")
-      .map((res: Response) => res.json());
+  getModelByMakeId(id: number) {
+    return this.http.get("/api/model/getbymakeid/"+id)
+                    .map((res: Response) => res.json());
   }
 
 }
