@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Vega.Models;
 
 namespace Vega.Controllers
 {
@@ -7,7 +8,7 @@ namespace Vega.Controllers
     {
         [HttpPost]
         [Route("create")]
-        public IActionResult CreateVehicle(VehiclesController vehicle)
+        public IActionResult CreateVehicle([FromBody] Vehicle vehicle)
         {
             return Ok(vehicle);
         }
