@@ -1,15 +1,10 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Vega.Core;
 using Vega.Models;
 
 namespace Vega.Persistence
 {
-    public interface IVehicleRepository
-    {
-        Task<Vehicle> GetVehicle(int id, bool includeRelated = true);
-        void Add(Vehicle vehicle);
-        void Remove(Vehicle vehicle);
-    }
 
     public class VehicleRepository : IVehicleRepository
     {
@@ -19,9 +14,9 @@ namespace Vega.Persistence
         {
             this._dbContext = dbContext;
         }
-        public async Task<Vehicle> GetVehicle(int id, bool includeRelated = true)
+        public async Task<Vehicle> GetVehicleAsync(int id, bool includeRelated = true)
         {
-            if (includeRelated)
+            if (!includeRelated)
             {
                 return await _dbContext.Vehicles.FindAsync(id);
             }

@@ -1,12 +1,8 @@
 using System.Threading.Tasks;
+using Vega.Core;
 
 namespace Vega.Persistence
 {
-    public interface IUnitOfWork
-    {
-        Task SaveChanges();
-    }
-
 
     public class UnitOfWork : IUnitOfWork
     {
@@ -16,7 +12,7 @@ namespace Vega.Persistence
         {
             this._context = context;
         }
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }
