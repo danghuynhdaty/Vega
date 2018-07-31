@@ -10,7 +10,7 @@ using Vega.Resources;
 
 namespace Vega.Controllers
 {
-    [Route("api/make")]
+    [Route("api/makes")]
     public class MakesController : ControllerBase
     {
         private readonly VegaDbContext _context;
@@ -22,7 +22,7 @@ namespace Vega.Controllers
         }
 
         [HttpGet]
-        [Route("getall")]        
+        [Route("getall")]
         public async Task<IEnumerable<MakeResource>> GetMakes()
         {
             var makes = await _context.Makes.ToListAsync();

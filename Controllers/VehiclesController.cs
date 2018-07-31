@@ -10,7 +10,7 @@ using Vega.Resources;
 
 namespace Vega.Controllers
 {
-    [Route("api/vehicle")]
+    [Route("api/vehicles")]
     public class VehiclesController : ControllerBase
     {
         private readonly IMapper _mapper;

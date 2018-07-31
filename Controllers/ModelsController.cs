@@ -10,7 +10,7 @@ using Vega.Resources;
 
 namespace Vega.Controllers
 {
-    [Route("api/model")]
+    [Route("api/models")]
     public class ModelsController : Controller
     {
         private readonly VegaDbContext _context;

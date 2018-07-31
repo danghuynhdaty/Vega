@@ -9,7 +9,7 @@ using Vega.Resources;
 
 namespace Vega.Controllers
 {
-    [Route("api/feature")]
+    [Route("api/features")]
     public class FeaturesController : ControllerBase
     {
         private readonly VegaDbContext _dbContext;
