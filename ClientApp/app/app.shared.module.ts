@@ -1,3 +1,4 @@
+import * as Raven from "raven-js";
 import { AppErrorHandler } from "./app.error-handler";
 import { NgModule, ErrorHandler } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -13,6 +14,10 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./components/app/app.component";
 import { NavMenuComponent } from "./components/navmenu/navmenu.component";
 import { HomeComponent } from "./components/home/home.component";
+
+Raven.config(
+  "https://bb149d677e13440c8633f1dcc62b3008@sentry.io/1255659"
+).install();
 
 @NgModule({
   declarations: [
