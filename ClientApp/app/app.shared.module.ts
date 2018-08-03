@@ -1,4 +1,5 @@
-import { NgModule } from "@angular/core";
+import { AppErrorHandler } from "./app.error-handler";
+import { NgModule, ErrorHandler } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ToastyModule } from "ng2-toasty";
 
@@ -32,6 +33,9 @@ import { HomeComponent } from "./components/home/home.component";
       { path: "**", redirectTo: "home" }
     ])
   ],
-  providers: [VehicleService]
+  providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    VehicleService
+  ]
 })
 export class AppModuleShared {}
