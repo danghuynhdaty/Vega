@@ -26,9 +26,10 @@ export class VehicleService {
   }
 
   create(vehicle: any): any {
-    // let headers: any = new Headers();
-    // headers.append("Content-Type", "application/json");
-    // let options: any = new RequestOptions({ headers: headers });
     return this.http.post("/api/vehicles", vehicle).map(res => res.json());
+  }
+
+  getVehicle(id: number): any {
+    return this.http.get("/api/vehicles/" + id).map(res => res.json());
   }
 }
