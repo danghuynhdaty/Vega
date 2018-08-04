@@ -36,7 +36,7 @@ export class VehicleService {
   }
 
   update(vehicle: any): any {
-    this.http
+    return this.http
       .put("/api/vehicles/" + vehicle.id, vehicle)
       .map(res => res.json());
   }
