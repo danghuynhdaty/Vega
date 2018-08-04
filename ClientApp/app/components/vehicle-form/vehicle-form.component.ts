@@ -62,6 +62,13 @@ export class VehicleFormComponent implements OnInit {
       },
       err => {
         if (err.status === 404) {
+          this.toastyService.error({
+            title: "Error",
+            msg: "The vehicle is not exist.",
+            theme: "bootstrap",
+            showClose: true,
+            timeout: 5000
+          });
           this.router.navigate(["/home"]);
         }
       }
@@ -116,19 +123,30 @@ export class VehicleFormComponent implements OnInit {
         }
       );
     } else {
-      // this.vehicle.id = 0;
-      this.vehicleService.create(this.vehicle).subscribe(
-        (x: any) => {
-          this.toastyService.success({
-            title: "Success",
-            msg: "The vehicle was successfully updated.",
-            theme: "bootstrap",
-            showClose: true,
-            timeout: 5000
-          });
-        },
-        (err: any) => console.log(err)
-      );
+      this.vehicleService.create(this.vehicle).subscribe((x: any) => {
+        this.toastyService.success({
+          title: "Success",
+          msg: "The vehicle was successfully updated.",
+          theme: "bootstrap",
+          showClose: true,
+          timeout: 5000
+        });
+      });
+    }
+  }
+
+  delete(): any {
+    if (confirm("Are you sure?")) {
+      this.vehicleService.delete(this.vehicle.id).subscribe((x: any) => {
+        this.toastyService.success({
+          title: "Success",
+          msg: "The vehicle was successfully deleted.",
+          theme: "bootstrap",
+          showClose: true,
+          timeout: 5000
+        });
+        this.router.navigate(["/home"]);
+      });
     }
   }
 }

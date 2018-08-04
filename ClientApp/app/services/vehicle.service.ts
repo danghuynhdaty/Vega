@@ -1,3 +1,4 @@
+import { Endpoint } from "./../shared/endpoint";
 import { SaveVehicle } from "./../models/vehicle";
 import { Injectable, Inject } from "@angular/core";
 import { Http, RequestOptions } from "@angular/http";
@@ -6,8 +7,7 @@ import { Response } from "@angular/http";
 
 @Injectable()
 export class VehicleService {
-  private vehicleEndpoint: string = "/api/vehicles/";
-  constructor(private http: Http) {}
+  constructor(private http: Http, private endpoint: Endpoint) {}
 
   getFeature(): any {
     return this.http
@@ -27,17 +27,23 @@ export class VehicleService {
       .map((res: Response) => res.json());
   }
 
-  create(vehicle: any): any {
-    return this.http.post("/api/vehicles/", vehicle).map(res => res.json());
+  create(vehicle: SaveVehicle): any {
+    return this.http
+      .post(this.endpoint.vehicles, vehicle)
+      .map(res => res.json());
   }
 
   getVehicle(id: number): any {
-    return this.http.get("/api/vehicles/" + id).map(res => res.json());
+    return this.http.get(this.endpoint.vehicles + id).map(res => res.json());
   }
 
-  update(vehicle: any): any {
+  update(vehicle: SaveVehicle): any {
     return this.http
-      .put("/api/vehicles/" + vehicle.id, vehicle)
+      .put(this.endpoint.vehicles + vehicle.id, vehicle)
       .map(res => res.json());
+  }
+
+  delete(id: number): any {
+    return this.http.delete(this.endpoint.vehicles + id).map(res => res.json());
   }
 }

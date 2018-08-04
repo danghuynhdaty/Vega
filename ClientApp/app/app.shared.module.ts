@@ -1,3 +1,4 @@
+import { Endpoint } from "./shared/endpoint";
 import * as Raven from "raven-js";
 import { AppErrorHandler } from "./app.error-handler";
 import { NgModule, ErrorHandler } from "@angular/core";
@@ -41,7 +42,8 @@ Raven.config(
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
-    VehicleService
+    VehicleService,
+    Endpoint
   ]
 })
 export class AppModuleShared {}
