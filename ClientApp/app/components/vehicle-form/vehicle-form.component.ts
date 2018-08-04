@@ -1,3 +1,5 @@
+import * as _ from "underscore";
+import { SaveVehicle, Vehicle } from "./../../models/vehicle";
 import { VehicleService } from "./../../services/vehicle.service";
 import { Component, OnInit } from "@angular/core";
 import {
@@ -16,9 +18,17 @@ export class VehicleFormComponent implements OnInit {
   makes: any;
   models: any;
   features: any;
-  vehicle: any = {
+  vehicle: SaveVehicle = {
+    id: 0,
+    makeId: 0,
+    modelId: 0,
+    isRegister: false,
     features: [],
-    contact: {}
+    contact: {
+      name: "",
+      phone: "",
+      email: ""
+    }
   };
 
   constructor(
@@ -44,7 +54,7 @@ export class VehicleFormComponent implements OnInit {
         this.makes = data[0];
         this.features = data[1];
         if (this.vehicle.id) {
-          this.vehicle = data[2];
+          this.setVehicle(data[2] as Vehicle);
         }
       },
       err => {
@@ -53,6 +63,15 @@ export class VehicleFormComponent implements OnInit {
         }
       }
     );
+  }
+
+  private setVehicle(v: Vehicle): any {
+    this.vehicle.id = v.id;
+    this.vehicle.makeId = v.make.id;
+    this.vehicle.modelId = v.model.id;
+    this.vehicle.isRegister = v.isRegister;
+    this.vehicle.contact = v.contact;
+    this.vehicle.features = _.pluck(v.features, "id");
   }
 
   onMakeChange(): void {
