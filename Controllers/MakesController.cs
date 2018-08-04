@@ -22,10 +22,9 @@ namespace Vega.Controllers
         }
 
         [HttpGet]
-        [Route("getall")]
         public async Task<IEnumerable<MakeResource>> GetMakes()
         {
-            var makes = await _context.Makes.ToListAsync();
+            var makes = await _context.Makes.Include(p => p.Models).ToListAsync();
             return _mapper.Map<List<Make>, List<MakeResource>>(makes);
         }
     }

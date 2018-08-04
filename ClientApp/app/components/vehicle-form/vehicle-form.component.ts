@@ -90,11 +90,9 @@ export class VehicleFormComponent implements OnInit {
   }
 
   private populateModels(): void {
-    if (this.vehicle.makeId) {
-      this.vehicleService
-        .getModelByMakeId(this.vehicle.makeId)
-        .subscribe((models: any) => (this.models = models));
-    }
+    this.models = this.vehicle.makeId
+      ? this.makes.find((m: any) => m.id === +this.vehicle.makeId).models
+      : [];
   }
 
   onFeatureToggle(featureId: number, $event: any): void {

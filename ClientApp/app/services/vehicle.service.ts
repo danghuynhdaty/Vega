@@ -17,7 +17,7 @@ export class VehicleService {
 
   getMakes(): any {
     return this.http
-      .get("/api/makes/getall")
+      .get(this.endpoint.makes)
       .map((res: Response) => res.json());
   }
 
