@@ -22,7 +22,7 @@ export class VehicleFormComponent implements OnInit {
     id: 0,
     makeId: 0,
     modelId: 0,
-    isRegister: false,
+    isRegistered: false,
     features: [],
     contact: {
       name: "",
@@ -55,6 +55,7 @@ export class VehicleFormComponent implements OnInit {
         this.features = data[1];
         if (this.vehicle.id) {
           this.setVehicle(data[2] as Vehicle);
+          this.populateModels();
         }
       },
       err => {
@@ -69,18 +70,22 @@ export class VehicleFormComponent implements OnInit {
     this.vehicle.id = v.id;
     this.vehicle.makeId = v.make.id;
     this.vehicle.modelId = v.model.id;
-    this.vehicle.isRegister = v.isRegister;
+    this.vehicle.isRegistered = v.isRegistered;
     this.vehicle.contact = v.contact;
     this.vehicle.features = _.pluck(v.features, "id");
   }
 
   onMakeChange(): void {
+    this.populateModels();
+    delete this.vehicle.modelId;
+  }
+
+  private populateModels(): void {
     if (this.vehicle.makeId) {
       this.vehicleService
         .getModelByMakeId(this.vehicle.makeId)
         .subscribe((models: any) => (this.models = models));
     }
-    delete this.vehicle.modelId;
   }
 
   onFeatureToggle(featureId: number, $event: any): void {

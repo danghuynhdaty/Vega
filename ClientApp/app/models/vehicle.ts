@@ -13,7 +13,7 @@ export interface Vehicle {
   id: number;
   model: IKeyValuePair;
   make: IKeyValuePair;
-  isRegister: boolean;
+  isRegistered: boolean;
   features: IKeyValuePair[];
   contact: IContact;
   lastUpdate: string;
@@ -24,7 +24,7 @@ export interface SaveVehicle {
   id: number;
   modelId: number;
   makeId: number;
-  isRegister: boolean;
+  isRegistered: boolean;
   features: number[];
   contact: IContact;
 }
