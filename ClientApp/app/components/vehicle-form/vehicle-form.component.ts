@@ -9,6 +9,7 @@ import {
 } from "../../../../node_modules/@angular/router";
 import { Observable } from "../../../../node_modules/rxjs/Observable";
 import "rxjs/add/observable/forkJoin";
+import { ToastyService } from "../../../../node_modules/ng2-toasty";
 @Component({
   selector: "app-vehicle-form",
   templateUrl: "./vehicle-form.component.html",
@@ -34,6 +35,7 @@ export class VehicleFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private toastyService: ToastyService,
     private vehicleService: VehicleService
   ) {
     route.params.subscribe(p => {
@@ -98,8 +100,24 @@ export class VehicleFormComponent implements OnInit {
   }
 
   submit(): any {
-    this.vehicleService
-      .create(this.vehicle)
-      .subscribe((x: any) => console.log(x));
+    console.log(this.vehicle);
+    if (this.vehicle.id) {
+      this.vehicleService.update(this.vehicle).subscribe(
+        (x: any) => {
+          this.toastyService.success({
+            title: "Success",
+            msg: "The vehicle was successfully updated.",
+            theme: "bootstrap",
+            showClose: true,
+            timeout: 5000
+          });
+        },
+        (err: any) => console.log(err)
+      );
+    } else {
+      this.vehicleService
+        .create(this.vehicle)
+        .subscribe((x: any) => console.log(x), (err: any) => console.log(err));
+    }
   }
 }
