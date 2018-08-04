@@ -6,6 +6,7 @@ import { Response } from "@angular/http";
 
 @Injectable()
 export class VehicleService {
+  private vehicleEndpoint: string = "/api/vehicles/";
   constructor(private http: Http) {}
 
   getFeature(): any {
@@ -26,16 +27,15 @@ export class VehicleService {
       .map((res: Response) => res.json());
   }
 
-  create(vehicle: SaveVehicle): any {
-    console.log(vehicle);
-    return this.http.post("/api/vehicles", vehicle).map(res => res.json());
+  create(vehicle: any): any {
+    return this.http.post("/api/vehicles/", vehicle).map(res => res.json());
   }
 
   getVehicle(id: number): any {
     return this.http.get("/api/vehicles/" + id).map(res => res.json());
   }
 
-  update(vehicle: SaveVehicle): any {
+  update(vehicle: any): any {
     this.http
       .put("/api/vehicles/" + vehicle.id, vehicle)
       .map(res => res.json());

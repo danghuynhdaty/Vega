@@ -9,6 +9,7 @@ namespace Vega.Models
     [Table("Vehicles")]
     public class Vehicle
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ModelId { get; set; }
         public Model Model { get; set; }

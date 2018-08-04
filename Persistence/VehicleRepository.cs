@@ -31,12 +31,12 @@ namespace Vega.Persistence
 
         public void Add(Vehicle vehicle)
         {
-            _dbContext.Add(vehicle);
+            _dbContext.Vehicles.Add(vehicle);
         }
 
         public void Remove(Vehicle vehicle)
         {
-            _dbContext.Remove(vehicle);
+            _dbContext.Vehicles.Remove(vehicle);
         }
     }
 }

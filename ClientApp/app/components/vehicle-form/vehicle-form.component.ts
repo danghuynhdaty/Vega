@@ -39,7 +39,7 @@ export class VehicleFormComponent implements OnInit {
     private vehicleService: VehicleService
   ) {
     route.params.subscribe(p => {
-      this.vehicle.id = +p.id;
+      this.vehicle.id = +p.id ? +p.id : 0;
     });
   }
 
@@ -100,7 +100,6 @@ export class VehicleFormComponent implements OnInit {
   }
 
   submit(): any {
-    console.log(this.vehicle);
     if (this.vehicle.id) {
       this.vehicleService.update(this.vehicle).subscribe(
         (x: any) => {
@@ -112,12 +111,24 @@ export class VehicleFormComponent implements OnInit {
             timeout: 5000
           });
         },
-        (err: any) => console.log(err)
+        (err: any) => {
+          console.log(err);
+        }
       );
     } else {
-      this.vehicleService
-        .create(this.vehicle)
-        .subscribe((x: any) => console.log(x), (err: any) => console.log(err));
+      // this.vehicle.id = 0;
+      this.vehicleService.create(this.vehicle).subscribe(
+        (x: any) => {
+          this.toastyService.success({
+            title: "Success",
+            msg: "The vehicle was successfully updated.",
+            theme: "bootstrap",
+            showClose: true,
+            timeout: 5000
+          });
+        },
+        (err: any) => console.log(err)
+      );
     }
   }
 }
