@@ -11,19 +11,13 @@ export class VehicleService {
 
   getFeature(): any {
     return this.http
-      .get("/api/features/getall")
+      .get(this.endpoint.features)
       .map((res: Response) => res.json());
   }
 
   getMakes(): any {
     return this.http
       .get(this.endpoint.makes)
-      .map((res: Response) => res.json());
-  }
-
-  getModelByMakeId(id: number): any {
-    return this.http
-      .get("/api/models/getbymakeid/" + id)
       .map((res: Response) => res.json());
   }
 

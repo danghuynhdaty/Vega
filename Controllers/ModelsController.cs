@@ -23,7 +23,6 @@ namespace Vega.Controllers
         }
 
         [HttpGet]
-        [Route("getall")]
         public async Task<IEnumerable<ModelResource>> models()
         {
             var models = await _context.Models.ToListAsync();

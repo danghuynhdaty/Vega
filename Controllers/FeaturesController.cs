@@ -21,7 +21,6 @@ namespace Vega.Controllers
             this._mapper = mapper;
         }
 
-        [Route("getall")]
         [HttpGet]
         public async Task<IEnumerable<FeatureResource>> GetAll()
         {
